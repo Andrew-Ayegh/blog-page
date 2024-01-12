@@ -1,3 +1,4 @@
+import os
 from functools import wraps
 import secrets
 from flask import Flask, abort, render_template, redirect, url_for, flash, request
@@ -21,8 +22,8 @@ year = datetime.now().year
 Bootstrap5(app)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
-app.config['SECRET_KEY'] = "e29f85a1ed1a15d1df8bceb05bf2dab679cc804b9beee5647607c744b23d087e"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI', "sqlite:///posts.db")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 # app.secret_key = secrets.token_hex()
 db = SQLAlchemy()
 db.init_app(app)
@@ -164,9 +165,6 @@ def post():
     id = request.args.get('id')
     post = db.session.execute(db.select(BlogPost).where(BlogPost.id == id)).scalar()
     comments = db.session.execute(db.select(Comment).where(Comment.post_id == post.id)).scalars().all()
-    # print(comment)
-    for _ in comments:
-        print(f"{_}:{_.post_id}:{post.id}")
     
     if comment_form.validate_on_submit():
         comment = comment_form.comment.data
