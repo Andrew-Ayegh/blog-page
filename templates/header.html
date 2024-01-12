@@ -1,0 +1,15 @@
+<header class="masthead" style="background-image: url('../static/assets/img/{{image}}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center " ">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1 style="text-decoration: wavy; text-shadow:1dvh;">{{header}}</h1>
+                    <span class="subheading">{{header_text}}</span>
+                    {% if current_user.is_authenticated %}
+                        <blockquote>Welcome <span style="color:rgb(13, 236, 13)">{{current_user.name}}</span></blockquote>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
