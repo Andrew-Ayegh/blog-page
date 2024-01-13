@@ -7,13 +7,13 @@ from flask_ckeditor import CKEditor
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date
-from sqlalchemy import Nullable
+
 from forms import CreatePostForm, LoginForm, RegistrForm, CommentForm
 
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from libgravatar import Gravatar
-from flask_migrate import Migrate, upgrade
+
 
 app = Flask(__name__)
 ckeditor = CKEditor(app)
