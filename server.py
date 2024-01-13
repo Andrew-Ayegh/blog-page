@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date
 from sqlalchemy import Nullable
 from forms import CreatePostForm, LoginForm, RegistrForm, CommentForm
-import requests
+
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from libgravatar import Gravatar
